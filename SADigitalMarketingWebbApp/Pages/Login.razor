@@ -1,0 +1,106 @@
+﻿@layout Login_Signup_Layout
+@page "/"
+@inject NavigationManager UriHelper
+
+<style>
+    .div {
+        margin:auto;
+        width:auto;
+    }
+
+    label {
+        display: block;
+        width: 90px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .backgroundimg {
+        background-image: url(https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+        width: 1880px;
+        height: 880px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .heading{
+        font-size: 150px;
+        font-weight:bold;
+    }
+
+    .container {
+        background-color: aliceblue;
+        width: 20%;
+        height: 55%;
+        text-align: center;
+    }
+</style>
+
+<div class="div">
+    <div class="backgroundimg" align="center">
+        <br />
+        <br />
+        <br />
+        <br />
+        
+        
+        <h3 class="heading">Login</h3>
+        <br />
+        <br />
+        <h5>Please enter your user name and password to login or sign up if you dont have an account!</h5>
+        <br />
+        <label>Username</label>
+        <input type="text" id="username" @bind="Username" placeholder="Enter Username" />
+        <br />
+        <br />
+        <label>Password</label>
+        <input type="number" id="password" @bind="Password" placeholder="Enter Password">
+
+        <p style="color:@Color"><b>@text</b></p>
+        <br />
+        <br />
+        <button type="submit" class="btn-primary" @onclick="Submit">Submit</button>
+        <br />
+        <h4>--------or--------</h4>
+        <button type="submit" class="btn-secondary" @onclick="Navigate">Signup</button>
+
+    </div>
+
+</div>
+
+
+@code {
+    private string Username { get; set; }
+    private string Password { get; set; }
+
+    string Color = "black";
+    string text = "";
+
+    private void Submit()
+    {
+        if (Username == "Brenden" && Password == "1234567")
+        {
+            Color = "green";
+            text = "Welcome Guest!";
+            Username = "";
+            Password = "";
+            UriHelper.NavigateTo("/index");
+
+        }
+        else
+        {
+            Color = "red";
+            text = "User Password Wrong!";
+            Username = "";
+            Password = "";
+
+        }
+    }
+
+    private void Navigate()
+    {
+        UriHelper.NavigateTo("/signup");
+    }
+
+}
