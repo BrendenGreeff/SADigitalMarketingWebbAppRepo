@@ -71,3 +71,5 @@ C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketin
 C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbApp\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\Signup_Layout.razor.g.cs
 C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbApp\obj\Debug\netcoreapp3.1\Razor\Shared\Login_Layout.razor.g.cs
 C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbApp\obj\Debug\netcoreapp3.1\Razor\Shared\Signup_Layout.razor.g.cs
+C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbApp\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Users.razor.g.cs
+C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbApp\obj\Debug\netcoreapp3.1\Razor\Pages\Users.razor.g.cs
