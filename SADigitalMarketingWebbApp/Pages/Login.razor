@@ -1,11 +1,20 @@
-﻿@layout Login_Layout
-@page "/"
+﻿@page "/"
+
+@layout Login_Layout
+
 @inject NavigationManager UriHelper
+
+@using DataLibrary
+@using SADigitalMarketingWebbApp.Models
+@using Microsoft.Extensions.Configuration
+
+@inject IDataAccess _data
+@inject IConfiguration _config
 
 <style>
     .div {
-        margin:auto;
-        width:auto;
+        margin: auto;
+        width: auto;
     }
 
     label {
@@ -24,9 +33,9 @@
         background-size: cover;
     }
 
-    .heading{
+    .heading {
         font-size: 150px;
-        font-weight:bold;
+        font-weight: bold;
     }
 
     .container {
@@ -43,8 +52,8 @@
         <br />
         <br />
         <br />
-        
-        
+
+
         <h3 class="heading">Login</h3>
         <br />
         <br />
@@ -69,36 +78,50 @@
 
 </div>
 
+@code{
 
-@code {
-    private string Username { get; set; }
-    private string Password { get; set; }
+                List<UsersModel> users;
 
-    string Color = "black";
-    string text = "";
+                protected override async Task OnInitializedAsync()
+            {
+                string sql = "SELECT Users_Fname, Users_Username FROM users";
+                users = await _data.LoadData<UsersModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
+            }
 
-    private void Submit()
-    {
-        if (Username == "Brenden" && Password == "1234567")
-        {
-            Color = "green";
-            text = "Welcome Guest!";
-            Username = "";
-            Password = "";
-            UriHelper.NavigateTo("/index");
+            private async Task Submit()
+            {
+                string sql = "SELECT Users_Username, Users_Password FROM users";
+                List<UsersModel> test;
 
-        }
-        else
-        {
-            Color = "red";
-            text = "User Password Wrong!";
-            Username = "";
-            Password = "";
+                test = await _data.LoadData<UsersModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
 
-        }
-    }
 
-    private void Navigate()
+                    private string Username { get; set; }
+            private string Password { get; set; }
+
+            string Color = "black";
+            string text = "";
+
+                    if(Username == "Brenden && Password == "1234567")
+                    {
+                        Color = "green";
+                        text = "Welcome Guest!";
+                        Username = "";
+                        Password = "";
+                        UriHelper.NavigateTo("/index");
+
+                    }
+                    else
+                    {
+                        Color = "red";
+                        text = "User Password Wrong!";
+                        Username = "";
+                        Password = "";
+
+                    }
+                }
+
+                private void Navigate()
     {
         UriHelper.NavigateTo("/signup");
     }

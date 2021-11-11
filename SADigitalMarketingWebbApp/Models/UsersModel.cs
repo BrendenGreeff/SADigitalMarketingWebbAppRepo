@@ -7,14 +7,14 @@ namespace SADigitalMarketingWebbApp.Models
 {
     public class UsersModel
     {
-        public int User_ID { get; set; }
-        public string User_Fname { get; set; }
-        public string User_Lname { get; set; }
-        public string User_Username { get; set; }
-        public string User_Email{ get; set; }
-        public int User_PhoneNumber { get; set; }
-        public DateTime User_DOB { get; set; }
-        public int User_Password { get; set; }
-        public int User_AccessLevel { get; set; }
+        public int Users_ID { get; set; }
+        public string Users_Fname { get; set; }
+        public string Users_Lname { get; set; }
+        public string Users_Username { get; set; }
+        public string Usesr_Email{ get; set; }
+        public int Users_PhoneNumber { get; set; }
+        public DateTime Users_DOB { get; set; }
+        public int Users_Password { get; set; }
+        public int Users_AccessLevel { get; set; }
     }
 }
