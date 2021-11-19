@@ -5,10 +5,10 @@
 @inject NavigationManager UriHelper
 
 @using DataLibrary
-@using SADigitalMarketingWebbApp2.Models
+@using CMPG323Project2.Models
 @using Microsoft.Extensions.Configuration
 
-@inject IDataAccess _data
+
 @inject IConfiguration _config
 
 <style>
@@ -81,7 +81,7 @@
 
 @code{
 
-    UsersModel users = new UsersModel();
+    UsersModels users = new UsersModels();
 
     private string Users_Fname { get; set; }
     private string Users_Lname { get; set; }
@@ -97,11 +97,8 @@
 
 
 
-    private async Task Submit()
+    public void Submit()
     {
-        string sql = "SELECT Users_Username, Users_Password FROM users";
-        await _data.LoadData<UsersModel, dynamic>(sql, new { Users_Username = users.Users_Username, Users_Password = users.Users_Password }, _config.GetConnectionString("default"));
-
         if (users.Users_Username == "Brenden" && users.Users_Password == "123")
         {
             Color = "green";
