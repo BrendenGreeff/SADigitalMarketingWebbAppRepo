@@ -47,62 +47,65 @@
 </style>
 
 <div class="div">
-    <div class="backgroundimg" align="center">
-        <br />
-        <br />
-        <br />
-        <br />
+    <div class="LoginDiv">
+        <div class="backgroundimg" align="center">
+            <br />
+            <br />
+            <br />
+            <br />
 
 
-        <h3 class="heading">Login</h3>
-        <br />
-        <br />
-        <h5>Please enter your user name and password to login or sign up if you dont have an account!</h5>
-        <br />
-        <label>Username</label>
-        <input type="text" id="username" @bind="Username" placeholder="Enter Username" />
-        <br />
-        <br />
-        <label>Password</label>
-        <input type="password" id="password" @bind="Password" placeholder="Enter Password">
+            <h3 class="heading">Login</h3>
+            <br />
+            <br />
+            <h5>Please enter your user name and password to login or sign up if you dont have an account!</h5>
+            <br />
+            <label>Username</label>
+            <input type="text" id="username" @bind-value="users.Users_Username" placeholder="Enter Username" />
+            <br />
+            <br />
+            <label>Password</label>
+            <input type="password" id="password" @bind-value="users.Users_Password" placeholder="Enter Password">
 
-        <p style="color:@Color"><b>@text</b></p>
-        <br />
-        <br />
-        <button type="submit" class="btn-primary" @onclick="Submit">Submit</button>
-        <br />
-        <h4>--------or--------</h4>
-        <button type="submit" class="btn-secondary" @onclick="Navigate">Signup</button>
+            <p style="color:@Color"><b>@text</b></p>
+            <br />
+            <br />
+            <button type="submit" class="btn-primary" @onclick="Submit">Submit</button>
+            <br />
+            <h4>--------or--------</h4>
+            <button type="submit" class="btn-secondary" @onclick="Navigate">Signup</button>
 
+        </div>
     </div>
-
 </div>
 
 @code{
-    private string Username { get; set; }
-    private string Password { get; set; }
+
+    UsersModel users = new UsersModel();
+
+    private string Users_Fname { get; set; }
+    private string Users_Lname { get; set; }
+    private string Users_Username { get; set; }
+    private string Users_Email { get; set; }
+    private string Users_PhoneNumber { get; set; }
+    private string Users_DOB { get; set; }
+    private string ConfirmPassword { get; set; }
+    private string Users_Password { get; set; }
 
     string Color = "black";
     string text = "";
 
-    List<UsersModel> users;
+    
 
-    protected override async Task OnInitializedAsync()
+    private async Task Submit()
     {
-        string sql = "SELECT Users_Fname, Users_Username FROM users";
-        users = await _data.LoadData<UsersModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
-    }
+        string sql = "SELECT Users_Username, Users_Password FROM users";
+        await _data.LoadData<UsersModel, dynamic>(sql, new {Users_Username = users.Users_Username, Users_Password = users.Users_Password }, _config.GetConnectionString("default"));
 
-    private void Submit()
-    {
-        
-        if (Username == "Brenden" && Password == "1234567")
-        { 
+        if (users.Users_Username == Users_Username && users.Users_Password == Users_Password)
+        {
             Color = "green";
             text = "Welcome Guest!";
-
-            Username = "";
-            Password = "";
 
             UriHelper.NavigateTo("/index");
 
@@ -111,8 +114,7 @@
         {
             Color = "red";
             text = "User Password Wrong!";
-            Username = "";
-            Password = "";
+
 
         }
     }

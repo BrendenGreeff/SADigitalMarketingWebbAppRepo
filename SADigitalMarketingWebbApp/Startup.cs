@@ -11,6 +11,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SADigitalMarketingWebbApp.Data;
+using SADigitalMarketingWebbApp.Areas.Identity;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace SADigitalMarketingWebbApp
 {
@@ -51,6 +57,9 @@ namespace SADigitalMarketingWebbApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
