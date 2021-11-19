@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <None Include="Properties\serviceDependencies.local.json.user" />
+  <Reference Include="filename" />  Areas
   </ItemGroup>
 
 </Project>
