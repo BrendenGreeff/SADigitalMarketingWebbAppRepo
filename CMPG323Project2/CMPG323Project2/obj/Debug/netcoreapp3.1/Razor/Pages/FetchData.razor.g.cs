@@ -73,6 +73,20 @@ using CMPG323Project2.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\CMPG323Project2\CMPG323Project2\_Imports.razor"
+using BlazorInputFile;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\CMPG323Project2\CMPG323Project2\_Imports.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\CMPG323Project2\CMPG323Project2\Pages\FetchData.razor"
 using CMPG323Project2.Data;
 

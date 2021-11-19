@@ -2,9 +2,11 @@
 
 @layout Signup_Layout
 
+@using DataLibrary
+@using CMPG323Project2.Models
 @using Microsoft.Extensions.Configuration
 
-
+@inject IDataAccess _data
 @inject IConfiguration _config
 
 @inject NavigationManager UriHelper
@@ -52,31 +54,31 @@
             <h5>Please enter your details below!</h5>
             <br />
             <label>First Name</label>
-            <input type="text" id="firstname" @bind-value="Users_Fname" placeholder="Enter First Name" />
+            <input type="text" id="firstname" @bind-value="users.Users_Fname" placeholder="Enter First Name" />
             <br />
             <br />
             <label>Last Name</label>
-            <input type="text" id="lastname" @bind-value="Users_Lname" placeholder="Enter Last Name">
+            <input type="text" id="lastname" @bind-value="users.Users_Lname" placeholder="Enter Last Name">
             <br />
             <br />
             <label>Username</label>
-            <input type="text" id="username" @bind-value="Users_Username" placeholder="Enter Username">
+            <input type="text" id="username" @bind-value="users.Users_Username" placeholder="Enter Username">
             <br />
             <br />
             <label>Email</label>
-            <input type="text" id="email" @bind-value="Users_Email" placeholder="Enter Email Address">
+            <input type="text" id="email" @bind-value="users.Users_Email" placeholder="Enter Email Address">
             <br />
             <br />
             <label>Phone Number</label>
-            <input type="number" id="phonenumber" @bind-value="Users_PhoneNumber" placeholder="Enter Phone Number">
+            <input type="number" id="phonenumber" @bind-value="users.Users_PhoneNumber" placeholder="Enter Phone Number">
             <br />
             <br />
             <label>Date of Birth</label>
-            <input type="text" id="dateofbirth" @bind-value="Users_DOB" placeholder="YYYY/MM/DD">
+            <input type="text" id="dateofbirth" @bind-value="users.Users_DOB" placeholder="YYYY/MM/DD">
             <br />
             <br />
             <label>Password</label>
-            <input type="password" id="password" @bind-value="Users_Password" placeholder="Enter Password">
+            <input type="password" id="password" @bind-value="users.Users_Password" placeholder="Enter Password">
             <br />
             <br />
             <label>Confirm Password</label>
@@ -94,7 +96,7 @@
 
 @code {
 
-    
+    UsersModels users = new UsersModels();
 
     private string Users_Fname { get; set; }
     private string Users_Lname { get; set; }
@@ -113,15 +115,17 @@
 
 
 
-    public void Submit()
+    private async Task Submit()
     {
 
 
-        if (Users_Password == ConfirmPassword)
+        if (users.Users_Password == ConfirmPassword)
         {
-            if (Users_Fname != "" && Users_Lname != "" && Users_Username != "" && Users_Email != "" && Users_DOB != null && Users_Password != null && ConfirmPassword != null)
+            if (users.Users_Fname != "" && users.Users_Lname != "" && users.Users_Username != "" && users.Users_Email != "" && users.Users_DOB != null && users.Users_Password != null && ConfirmPassword != null)
             {
 
+                string sql = "INSERT INTO users (Users_Fname, Users_Lname, Users_Username, Users_Email, Users_PhoneNumber, Users_DOB, Users_Password) values (@FirstName, @LastName, @Username, @Email, @PhoneNumber, @DateOfBirth, @Password)";
+                await _data.SaveData(sql, new { FirstName = users.Users_Fname, LastName = users.Users_Lname, Username = users.Users_Username, Email = users.Users_Email, PhoneNumber = users.Users_PhoneNumber, DateOfBirth = users.Users_DOB, Password = users.Users_Password }, _config.GetConnectionString("default"));
 
                 Color = "green";
                 text = "Welcome Guest!";
@@ -146,3 +150,4 @@
 
     }
 }
+

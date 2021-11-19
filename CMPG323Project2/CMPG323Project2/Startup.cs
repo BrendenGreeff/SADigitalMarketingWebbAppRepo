@@ -42,6 +42,7 @@ namespace CMPG323Project2
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<IDataAccess, DataAccess>();
+            Global.ConnectionString = Configuration.GetConnectionString("default");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

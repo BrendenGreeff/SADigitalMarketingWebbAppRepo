@@ -8,7 +8,7 @@
 @using CMPG323Project2.Models
 @using Microsoft.Extensions.Configuration
 
-
+@inject IDataAccess _data
 @inject IConfiguration _config
 
 <style>
@@ -83,6 +83,8 @@
 
     UsersModels users = new UsersModels();
 
+    List<UsersModels> user;
+
     private string Users_Fname { get; set; }
     private string Users_Lname { get; set; }
     private string Users_Username { get; set; }
@@ -95,25 +97,34 @@
     string Color = "black";
     string text = "";
 
-
+    protected override async Task OnInitializedAsync()
+    {
+        string sql = "SELECT Users_Username, Users_Password FROM users";
+        user = await _data.LoadData<UsersModels, dynamic>(sql, new { }, _config.GetConnectionString("default"));
+    }
 
     public void Submit()
     {
-        if (users.Users_Username == "Brenden" && users.Users_Password == "123")
+        foreach (var u in user)
         {
-            Color = "green";
-            text = "Welcome Guest!";
+            if (u.Users_Username == users.Users_Username && u.Users_Password == users.Users_Password)
+            {
+                Color = "green";
+                text = "Welcome Guest!";
 
-            UriHelper.NavigateTo("/index");
+                UriHelper.NavigateTo("/index");
+
+            }
+            else
+            {
+                Color = "red";
+                text = "User Password Wrong!";
+
+
+            }
 
         }
-        else
-        {
-            Color = "red";
-            text = "User Password Wrong!";
 
-
-        }
     }
 
     private void Navigate()
