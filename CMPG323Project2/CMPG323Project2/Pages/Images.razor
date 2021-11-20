@@ -1,0 +1,52 @@
+﻿@page "/images"
+
+@using CMPG323Project2.Data;
+@using CMPG323Project2.Services
+@using CMPG323Project2.Models
+@using BlazorInputFile
+@using System.IO;
+@using DataLibrary
+@using System.Text
+
+
+@inherits OwningComponentBase<ImagesService>
+
+<EditForm Model="@imgmodel" OnInvalidSubmit="@ValidSubmit">
+    <div class="ImagesUploadDiv">
+        <h3>Images</h3>
+        <hr />
+        <label>Image Name:</label>
+        <input type="text" id="ImageName" @bind-value="imgmodel.Images_Name" placeholder="Enter Image Name" />
+        <InputFile OnChange="HandelFileSelected"></InputFile>
+        <button type="submit" class="btn-primary">Insert</button>
+        <br />
+    </div>
+</EditForm>
+
+
+@code {
+
+    ImagesModels imgmodel = new ImagesModels();
+
+    public byte[] images { get; set; }
+
+
+    void ValidSubmit()
+    {
+        imgmodel.Images_ID = 0;
+        imgmodel.Images_Path = images;
+        Service.UploadImages(imgmodel);
+    }
+
+    private async Task HandelFileSelected(IFileListEntry[] files)
+    {
+        var file = files.FirstOrDefault();
+        if (file != null)
+        {
+            var ms = new MemoryStream();
+            await file.Data.CopyToAsync(ms);
+            images = ms.ToArray();
+        }
+    }
+
+}

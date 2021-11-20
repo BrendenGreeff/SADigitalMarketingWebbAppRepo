@@ -93,6 +93,7 @@
     private string Users_DOB { get; set; }
     private string ConfirmPassword { get; set; }
     private string Users_Password { get; set; }
+    public static string Name;
 
     string Color = "black";
     string text = "";
@@ -111,6 +112,8 @@
             {
                 Color = "green";
                 text = "Welcome Guest!";
+
+                Name = users.Users_Username;
 
                 UriHelper.NavigateTo("/index");
 

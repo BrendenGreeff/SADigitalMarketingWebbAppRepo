@@ -1,7 +1,59 @@
 ﻿@page "/index"
 
-<h1>Hello, world!</h1>
+@using CMPG323Project2
+@using System
+@using Microsoft.AspNetCore.Components.Forms
+@using System.Collections;
+@using System.Collections.Generic
+@using UnityEngine
+@using DataLibrary
 
-Welcome to your new app.
+<h1>Upload Photo</h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@if (ImageUrl != null)
+{
+    <img src="@ImageUrl" />
+    <br />
+    <br />
+}
+
+<div class="dropArea @dropClass">
+    Drag and drop photo, or click to select a local file.
+    <InputFile disabled="@Uploading" OnChange="OnInputFileChange" @ondragenter="HandleDragEnter" @ondragleave="HandleDragLeave"></InputFile>
+</div>
+<br />
+
+<h3>Files</h3>
+<ul>
+    @foreach (var url in FilesUrls)
+    {
+        <li><a href="@url">@url</a></li>
+    }
+</ul>
+
+@code{
+    string ImageUrl = "";
+    bool Uploading = false;
+    List<string> FileUrls = new List<string>();
+
+    //Support for drag/drop
+
+    string dropClass = string.Empty;
+
+    void HandleDragEnter()
+    {
+        dropClass = "dropAreaDrug";
+    }
+
+    void HandleDragLeave()
+    {
+        dropClass = string.Empty;
+    }
+
+    async Task OnInputFileChange(InputFileChangeEventArgs args)
+    {
+        dropClass = string.Empty;
+
+    }
+
+}

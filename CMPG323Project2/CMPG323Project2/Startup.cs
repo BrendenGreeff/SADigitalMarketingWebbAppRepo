@@ -16,6 +16,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CMPG323Project2.Services;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace CMPG323Project2
 {
@@ -34,7 +37,7 @@ namespace CMPG323Project2
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("default")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
@@ -42,7 +45,7 @@ namespace CMPG323Project2
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<IDataAccess, DataAccess>();
-            Global.ConnectionString = Configuration.GetConnectionString("default");
+            services.AddScoped<ImagesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +66,15 @@ namespace CMPG323Project2
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider =new PhysicalFileProvider(
+                    ConfigurationPath.Combine(Directory.GetCurrentDirectory(), "Files")),
+                    RequestPath = "/Files"
+                 
+            });
+
+            app.UseRouting(); 
 
             app.UseAuthentication();
             app.UseAuthorization();

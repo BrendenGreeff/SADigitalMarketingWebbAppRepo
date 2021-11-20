@@ -7,12 +7,15 @@
 
   <ItemGroup>
     <PackageReference Include="BlazorInputFile" Version="0.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Forms" Version="3.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.20" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.20" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.20" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    Microsoft.AspNetCore.Components.Forms<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />Microsoft.AspNetCore.Components.Forms
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Folder Include="Files\" />
   </ItemGroup>
 
 </Project>
