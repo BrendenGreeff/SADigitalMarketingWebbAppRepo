@@ -7,3 +7,4 @@ C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketin
 C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\CMPG323Project2\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.csproj.CoreCompileInputs.cache
 C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\CMPG323Project2\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.dll
 C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\CMPG323Project2\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.pdb
+C:\Users\brend\Downloads\UniversityFinalSem2\CMPG 323\Project2\SADigitalMarketingWebbAppRepo\SADigitalMarketingWebbAppRepo\CMPG323Project2\DataLibrary\obj\Debug\netstandard2.0\DataLibrary.GeneratedMSBuildEditorConfig.editorconfig
